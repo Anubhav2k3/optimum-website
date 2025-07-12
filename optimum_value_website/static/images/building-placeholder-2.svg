@@ -1,0 +1,38 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sky background -->
+  <rect width="300" height="200" fill="#f4e8f1"/>
+  
+  <!-- Modern office building -->
+  <rect x="80" y="40" width="140" height="150" fill="#7B2D6B"/>
+  
+  <!-- Glass panels -->
+  <rect x="90" y="50" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="110" y="50" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="130" y="50" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="150" y="50" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="170" y="50" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="190" y="50" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- More floors -->
+  <rect x="90" y="80" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="110" y="80" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="130" y="80" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="150" y="80" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="170" y="80" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="190" y="80" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  
+  <rect x="90" y="110" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="110" y="110" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="130" y="110" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="150" y="110" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="170" y="110" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  <rect x="190" y="110" width="15" height="20" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Ground -->
+  <rect x="0" y="185" width="300" height="15" fill="#3e3e3c"/>
+  
+  <!-- Title -->
+  <text x="150" y="25" font-family="Poppins, sans-serif" font-size="16" font-weight="600" fill="#5A1E4A" text-anchor="middle">
+    Corporate Office
+  </text>
+</svg>

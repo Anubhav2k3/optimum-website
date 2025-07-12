@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ service.title }} - Optimum Value</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="{{ service.short_description }}">
+    <meta name="keywords" content="Salesforce, {{ service.title }}, consulting, implementation">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/optimum-value-logo.png') }}" alt="Optimum Value Logo" class="logo-img">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#about">Our Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#services">Salesforce Expertise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('services_list') }}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('industries_list') }}">Industries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#careers">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url_for('services_list') }}">Services</a></li>
+                            <li class="breadcrumb-item active">{{ service.title }}</li>
+                        </ol>
+                    </nav>
+                    
+                    <div class="service-icon mb-4">
+                        <i class="{{ service.icon_class }} fa-4x text-primary"></i>
+                    </div>
+                    
+                    <h1 class="display-4 fw-bold text-dark mb-4">{{ service.title }}</h1>
+                    <p class="lead text-muted mb-4">{{ service.short_description }}</p>
+                    
+                    <div class="d-flex gap-3">
+                        <a href="#contact-form" class="btn btn-primary btn-lg">Get Started</a>
+                        <a href="#service-details" class="btn btn-outline-primary btn-lg">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    {% if service.image_url %}
+                        <img src="{{ service.image_url }}" alt="{{ service.title }}" class="img-fluid rounded shadow">
+                    {% else %}
+                        <div class="service-illustration text-center p-5 bg-light rounded">
+                            <i class="{{ service.icon_class }} fa-8x text-primary opacity-50"></i>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details Section -->
+    <section id="service-details" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="service-content">
+                        <h2 class="section-title text-center mb-5">Service Overview</h2>
+                        
+                        <div class="content-description mb-5">
+                            <p class="lead">{{ service.full_description }}</p>
+                        </div>
+                        
+                        {% if features %}
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-6">
+                                <h3 class="h4 mb-4">Key Features</h3>
+                                <ul class="list-unstyled">
+                                    {% for feature in features %}
+                                    <li class="mb-3">
+                                        <i class="fas fa-check-circle text-primary me-3"></i>
+                                        <span>{{ feature }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            
+                            {% if benefits %}
+                            <div class="col-md-6">
+                                <h3 class="h4 mb-4">Benefits</h3>
+                                <ul class="list-unstyled">
+                                    {% for benefit in benefits %}
+                                    <li class="mb-3">
+                                        <i class="fas fa-star text-warning me-3"></i>
+                                        <span>{{ benefit }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Ready to Get Started?</h2>
+                        <p class="section-subtitle">Contact us to discuss how {{ service.title }} can benefit your organization.</p>
+                    </div>
+                    
+                    <div class="card shadow border-0">
+                        <div class="card-body p-5">
+                            <form action="{{ url_for('contact') }}" method="POST" class="contact-form">
+                                <input type="hidden" name="service" value="{{ service.title }}">
+                                
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">Full Name *</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="company" class="form-label">Company</label>
+                                        <input type="text" class="form-control" id="company" name="company">
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone">
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <label for="message" class="form-label">Message *</label>
+                                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell us about your {{ service.title }} needs..." required></textarea>
+                                    </div>
+                                    
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                                            <i class="fas fa-paper-plane me-2"></i>
+                                            Send Message
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Services Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Related Services</h2>
+                <p class="section-subtitle">Explore our other Salesforce services</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- This would be populated with other services -->
+                <div class="col-12 text-center">
+                    <a href="{{ url_for('services_list') }}" class="btn btn-outline-primary">
+                        View All Services
+                        <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Left Column -->
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-4">
+                        <img src="{{ url_for('static', filename='images/optimum-value-logo.png') }}" alt="Optimum Value Logo" height="40" class="mb-3 filter-white">
+                        <p class="footer-description">
+                            Leading Salesforce consulting partner delivering innovative digital transformation solutions for businesses across industries.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Middle Column -->
+                <div class="col-lg-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="{{ url_for('index') }}" class="text-light">Home</a></li>
+                        <li><a href="{{ url_for('services_list') }}" class="text-light">Services</a></li>
+                        <li><a href="{{ url_for('industries_list') }}" class="text-light">Industries</a></li>
+                        <li><a href="{{ url_for('contact') }}" class="text-light">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="col-lg-4">
+                    <h5 class="footer-heading">Contact Info</h5>
+                    <p class="footer-contact">
+                        <i class="fas fa-envelope me-2"></i>
+                        info@optimumvalue.com
+                    </p>
+                    <p class="footer-contact">
+                        <i class="fas fa-phone me-2"></i>
+                        +1 (555) 123-4567
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Optimum Value. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by NextBigBox</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

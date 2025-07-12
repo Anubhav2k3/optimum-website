@@ -1,0 +1,182 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- Statistics Cards -->
+    <div class="col-xl-3 col-md-6">
+        <div class="card admin-card border-primary">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-blog fa-2x text-primary"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <div class="small text-muted">Blog Posts</div>
+                        <div class="h4 mb-0">{{ blog_count }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-3 col-md-6">
+        <div class="card admin-card border-success">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-briefcase fa-2x text-success"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <div class="small text-muted">Case Studies</div>
+                        <div class="h4 mb-0">{{ case_study_count }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-3 col-md-6">
+        <div class="card admin-card border-warning">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-cogs fa-2x text-warning"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <div class="small text-muted">Services</div>
+                        <div class="h4 mb-0">{{ service_count }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-3 col-md-6">
+        <div class="card admin-card border-info">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-industry fa-2x text-info"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <div class="small text-muted">Industries</div>
+                        <div class="h4 mb-0">{{ industry_count }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-4">
+    <!-- Recent Blog Posts -->
+    <div class="col-lg-6">
+        <div class="card admin-card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Blog Posts</h5>
+                <a href="{{ url_for('admin_blogs') }}" class="btn btn-sm btn-admin-primary">View All</a>
+            </div>
+            <div class="card-body">
+                {% if recent_blogs %}
+                    {% for blog in recent_blogs %}
+                        <div class="d-flex align-items-center mb-3 {% if not loop.last %}border-bottom pb-3{% endif %}">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">{{ blog.title }}</h6>
+                                <small class="text-muted">
+                                    {{ blog.created_at.strftime('%Y-%m-%d') }} • 
+                                    {% if blog.published %}
+                                        <span class="text-success">Published</span>
+                                    {% else %}
+                                        <span class="text-warning">Draft</span>
+                                    {% endif %}
+                                </small>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <a href="{{ url_for('admin_blog_edit', id=blog.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted mb-0">No blog posts yet. <a href="{{ url_for('admin_blog_new') }}">Create your first post</a>.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Case Studies -->
+    <div class="col-lg-6">
+        <div class="card admin-card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Case Studies</h5>
+                <a href="{{ url_for('admin_case_studies') }}" class="btn btn-sm btn-admin-primary">View All</a>
+            </div>
+            <div class="card-body">
+                {% if recent_cases %}
+                    {% for case in recent_cases %}
+                        <div class="d-flex align-items-center mb-3 {% if not loop.last %}border-bottom pb-3{% endif %}">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">{{ case.title }}</h6>
+                                <small class="text-muted">
+                                    {{ case.client_name }} • {{ case.created_at.strftime('%Y-%m-%d') }} • 
+                                    {% if case.published %}
+                                        <span class="text-success">Published</span>
+                                    {% else %}
+                                        <span class="text-warning">Draft</span>
+                                    {% endif %}
+                                </small>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <a href="{{ url_for('admin_case_study_edit', id=case.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted mb-0">No case studies yet. <a href="{{ url_for('admin_case_study_new') }}">Create your first case study</a>.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row g-4 mt-4">
+    <div class="col-12">
+        <div class="card admin-card">
+            <div class="card-header">
+                <h5 class="mb-0">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a href="{{ url_for('admin_blog_new') }}" class="btn btn-admin-primary w-100">
+                            <i class="fas fa-plus me-2"></i>
+                            New Blog Post
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('admin_case_study_new') }}" class="btn btn-success w-100">
+                            <i class="fas fa-plus me-2"></i>
+                            New Case Study
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('admin_service_new') }}" class="btn btn-warning w-100">
+                            <i class="fas fa-plus me-2"></i>
+                            New Service
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{{ url_for('admin_industry_new') }}" class="btn btn-info w-100">
+                            <i class="fas fa-plus me-2"></i>
+                            New Industry
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

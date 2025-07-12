@@ -1,0 +1,22 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="30" cy="30" r="25" fill="#0176d3" opacity="0.1"/>
+  
+  <!-- Main logo icon -->
+  <path d="M20 35 L30 25 L40 35 M25 30 L35 30" stroke="#0176d3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Company name -->
+  <text x="70" y="25" font-family="Poppins, sans-serif" font-size="18" font-weight="700" fill="#014486">
+    Optimum
+  </text>
+  
+  <!-- Company tagline -->
+  <text x="70" y="42" font-family="Poppins, sans-serif" font-size="14" font-weight="500" fill="#0176d3">
+    Value
+  </text>
+  
+  <!-- Decorative elements -->
+  <circle cx="45" cy="15" r="2" fill="#0176d3" opacity="0.3"/>
+  <circle cx="50" cy="45" r="1.5" fill="#0176d3" opacity="0.5"/>
+  <circle cx="15" cy="45" r="1" fill="#0176d3" opacity="0.4"/>
+</svg>

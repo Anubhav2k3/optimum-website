@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industries We Serve - Optimum Value</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Industry-specific Salesforce solutions for Financial Services, Healthcare, Manufacturing, Utilities, and more.">
+    <meta name="keywords" content="Salesforce, industry solutions, financial services, healthcare, manufacturing, utilities">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/optimum-value-logo.png') }}" alt="Optimum Value Logo" class="logo-img">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#about">Our Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#services">Salesforce Expertise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('services_list') }}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('industries_list') }}">Industries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#careers">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Industries Hero Section -->
+    <section class="industries-hero py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-4 fw-bold text-dark mb-4">Industries We Serve</h1>
+                    <p class="lead text-muted mb-5">
+                        Specialized Salesforce solutions tailored to the unique challenges and requirements 
+                        of your industry, backed by deep domain expertise and proven methodologies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Grid Section -->
+    <section class="industries-grid py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                {% for industry in industries %}
+                <div class="col-lg-6">
+                    <div class="industry-card card h-100 shadow-sm fade-up">
+                        <div class="card-body p-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-3 text-center">
+                                    <div class="industry-icon mb-3">
+                                        <i class="{{ industry.icon_class }} fa-4x text-primary"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-9">
+                                    <h4 class="industry-title mb-3">{{ industry.title }}</h4>
+                                    <p class="industry-description text-muted mb-4">{{ industry.short_description }}</p>
+                                    
+                                    <div class="industry-actions">
+                                        <a href="{{ url_for('industry_detail', slug=industry.slug) }}" class="btn btn-primary me-2">
+                                            Explore Solutions
+                                        </a>
+                                        <a href="{{ url_for('contact') }}?industry={{ industry.title }}" class="btn btn-outline-primary">
+                                            Get Started
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Expertise Section -->
+    <section class="industry-expertise py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title">Deep Industry Knowledge</h2>
+                    <p class="section-subtitle">
+                        Our industry-specific expertise ensures that your Salesforce implementation addresses 
+                        the unique challenges and opportunities in your sector.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="expertise-item text-center">
+                        <div class="expertise-icon mb-3">
+                            <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="expertise-title">Regulatory Compliance</h5>
+                        <p class="expertise-description">
+                            Ensure your Salesforce implementation meets industry-specific regulatory requirements 
+                            and compliance standards.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="expertise-item text-center">
+                        <div class="expertise-icon mb-3">
+                            <i class="fas fa-cogs fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="expertise-title">Process Optimization</h5>
+                        <p class="expertise-description">
+                            Streamline industry-specific business processes with tailored Salesforce configurations 
+                            and automations.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="expertise-item text-center">
+                        <div class="expertise-icon mb-3">
+                            <i class="fas fa-analytics fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="expertise-title">Industry Analytics</h5>
+                        <p class="expertise-description">
+                            Gain actionable insights with industry-specific dashboards, reports, and analytics 
+                            that drive informed decision-making.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Metrics Section -->
+    <section class="success-metrics py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto mb-5">
+                    <h2 class="mb-4">Proven Industry Results</h2>
+                    <p class="lead">
+                        Our industry-focused approach delivers measurable results across all sectors we serve.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="metric-item text-center">
+                        <div class="metric-number display-4 fw-bold mb-2">95%</div>
+                        <div class="metric-label">Client Satisfaction</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="metric-item text-center">
+                        <div class="metric-number display-4 fw-bold mb-2">200+</div>
+                        <div class="metric-label">Successful Projects</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="metric-item text-center">
+                        <div class="metric-number display-4 fw-bold mb-2">50+</div>
+                        <div class="metric-label">Industry Certifications</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="metric-item text-center">
+                        <div class="metric-number display-4 fw-bold mb-2">10+</div>
+                        <div class="metric-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="mb-4">Don't See Your Industry Listed?</h2>
+                    <p class="lead mb-4">
+                        We work with organizations across many sectors. Contact us to discuss how we can 
+                        help transform your industry-specific processes with Salesforce.
+                    </p>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-comments me-2"></i>
+                            Discuss Your Industry
+                        </a>
+                        <a href="{{ url_for('case_studies') }}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-chart-bar me-2"></i>
+                            View Case Studies
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Left Column -->
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-4">
+                        <img src="{{ url_for('static', filename='images/optimum-value-logo.png') }}" alt="Optimum Value Logo" height="40" class="mb-3 filter-white">
+                        <p class="footer-description">
+                            Leading Salesforce consulting partner delivering innovative digital transformation solutions for businesses across industries.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Middle Column -->
+                <div class="col-lg-4">
+                    <h5 class="footer-heading">Industries</h5>
+                    <ul class="list-unstyled footer-links">
+                        {% for industry in industries %}
+                        <li><a href="{{ url_for('industry_detail', slug=industry.slug) }}" class="text-light">{{ industry.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="col-lg-4">
+                    <h5 class="footer-heading">Contact Info</h5>
+                    <p class="footer-contact">
+                        <i class="fas fa-envelope me-2"></i>
+                        info@optimumvalue.com
+                    </p>
+                    <p class="footer-contact">
+                        <i class="fas fa-phone me-2"></i>
+                        +1 (555) 123-4567
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Optimum Value. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by NextBigBox</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

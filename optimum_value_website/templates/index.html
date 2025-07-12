@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimum Value - Empowering Digital Transformation</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="#hero">
+                    <img src="{{ url_for('static', filename='images/optimum-value-logo.png') }}" alt="Optimum Value Logo" class="logo-img">
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Our Story</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Salesforce Expertise</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('services_list') }}">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('industries_list') }}">Industries</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#careers">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Hidden Admin Button -->
+                    <div class="admin-access">
+                        <a href="{{ url_for('admin_login') }}" class="admin-btn" title="Admin Login">
+                            <i class="fas fa-user-shield"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section d-flex align-items-center">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title mb-4 fade-in">Empowering Digital Transformation</h1>
+                    <p class="hero-subtitle mb-4 fade-in">Innovative IT solutions for businesses that drive growth and efficiency.</p>
+                    <button class="btn btn-primary btn-lg cta-button fade-in">Get Started</button>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">About Optimum Value</h2>
+                    <p class="lead mb-4">We are a leading Salesforce consulting firm specializing in digital transformation solutions that drive business growth and operational efficiency.</p>
+                    <p class="mb-4">With years of experience in implementing enterprise-level Salesforce solutions, we help organizations across various industries streamline their processes, improve customer relationships, and achieve measurable results.</p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <div class="stat-item text-center">
+                                <h3 class="stat-number">150+</h3>
+                                <p class="stat-label">Projects Completed</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stat-item text-center">
+                                <h3 class="stat-number">98%</h3>
+                                <p class="stat-label">Client Satisfaction</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Get Started Today</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="{{ url_for('static', filename='images/building-placeholder-2.svg') }}" alt="About Optimum Value" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section Row 1 -->
+    <section id="services" class="services-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">Our Core Services</h2>
+                    <p class="section-subtitle">Comprehensive Salesforce solutions tailored to your business needs</p>
+                </div>
+            </div>
+            
+            <div class="row g-4 mb-5">
+                {% for service in services[:3] %}
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ url_for('service_detail', slug=service.slug) }}" class="text-decoration-none">
+                        <div class="service-box card h-100 shadow-sm fade-up">
+                            <div class="card-body text-center p-4">
+                                <div class="service-icon mb-3">
+                                    <i class="{{ service.icon_class }}"></i>
+                                </div>
+                                <h3 class="service-title">{{ service.title }}</h3>
+                                <p class="service-description">{{ service.short_description }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Services Section Row 2 -->
+            <div class="row g-4">
+                {% for service in services[3:6] %}
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ url_for('service_detail', slug=service.slug) }}" class="text-decoration-none">
+                        <div class="service-box card h-100 shadow-sm fade-up">
+                            <div class="card-body text-center p-4">
+                                <div class="service-icon mb-3">
+                                    <i class="{{ service.icon_class }}"></i>
+                                </div>
+                                <h3 class="service-title">{{ service.title }}</h3>
+                                <p class="service-description">{{ service.short_description }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="roadmap-section py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">Boost Your Productivity With A Ready-to-go Roadmap</h2>
+                    <p class="section-subtitle">Check out step by step implementation of Salesforce.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6 col-md-6">
+                    <div class="industry-roadmap card shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <h4 class="industry-title">Utility Industry</h4>
+                            <ol class="roadmap-steps">
+                                <li>Assess current customer management systems and pain points</li>
+                                <li>Design utility-specific customer portal and billing integration</li>
+                                <li>Implement field service management for maintenance teams</li>
+                                <li>Deploy analytics dashboard for operational insights</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6">
+                    <div class="industry-roadmap card shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <h4 class="industry-title">Healthcare</h4>
+                            <ol class="roadmap-steps">
+                                <li>Configure HIPAA-compliant patient management system</li>
+                                <li>Integrate with existing EMR and practice management systems</li>
+                                <li>Set up automated appointment scheduling and reminders</li>
+                                <li>Implement patient engagement and care coordination tools</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6">
+                    <div class="industry-roadmap card shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <h4 class="industry-title">Financial Services</h4>
+                            <ol class="roadmap-steps">
+                                <li>Implement compliant client onboarding and KYC processes</li>
+                                <li>Set up opportunity and pipeline management for advisors</li>
+                                <li>Configure automated compliance and risk management</li>
+                                <li>Deploy client portal and document management system</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6">
+                    <div class="industry-roadmap card shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <h4 class="industry-title">Retail</h4>
+                            <ol class="roadmap-steps">
+                                <li>Integrate omnichannel customer experience platform</li>
+                                <li>Implement inventory management and order tracking</li>
+                                <li>Set up personalized marketing automation campaigns</li>
+                                <li>Deploy customer loyalty and rewards programs</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6">
+                    <div class="industry-roadmap card shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <h4 class="industry-title">Manufacturing</h4>
+                            <ol class="roadmap-steps">
+                                <li>Configure account and contact management for B2B relationships</li>
+                                <li>Implement quote-to-cash process automation</li>
+                                <li>Set up production planning and supply chain visibility</li>
+                                <li>Deploy quality management and compliance tracking</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-6">
+                    <div class="industry-roadmap card shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <h4 class="industry-title">General Business</h4>
+                            <ol class="roadmap-steps">
+                                <li>Establish foundational CRM with lead management</li>
+                                <li>Configure sales pipeline and opportunity tracking</li>
+                                <li>Implement customer service and support workflows</li>
+                                <li>Set up reporting and analytics for business insights</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">Our Industries</h2>
+                    <p class="section-subtitle">Our industries span finance, manufacturing, healthcare, retail, and more, delivering tailored digital solutions.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                {% for industry in industries %}
+                <div class="col-lg-4 col-md-6">
+                    <a href="{{ url_for('industry_detail', slug=industry.slug) }}" class="text-decoration-none">
+                        <div class="industry-tile card shadow-sm fade-up">
+                            {% if industry.image_url %}
+                                <img src="{{ industry.image_url }}" class="card-img-top" alt="{{ industry.title }}">
+                            {% else %}
+                                <div class="card-img-top d-flex align-items-center justify-content-center bg-light" style="height: 200px;">
+                                    <i class="{{ industry.icon_class }} fa-4x text-primary"></i>
+                                </div>
+                            {% endif %}
+                            <div class="card-body text-center">
+                                <h5 class="industry-name">{{ industry.title }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="case-studies" class="case-studies-section py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <a href="{{ url_for('case_studies') }}" class="text-decoration-none">
+                        <h2 class="section-title">Case Studies</h2>
+                    </a>
+                    <p class="section-subtitle">Discover How Our Solutions Have Made a Difference in Real-world Scenarios.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                {% for case_study in featured_case_studies[:2] %}
+                <div class="col-lg-6">
+                    <div class="case-study card shadow-sm fade-up">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                {% if case_study.image_url %}
+                                    <img src="{{ case_study.image_url }}" class="img-fluid rounded-start h-100" alt="{{ case_study.title }}">
+                                {% else %}
+                                    <div class="img-fluid rounded-start h-100 d-flex align-items-center justify-content-center bg-primary text-white">
+                                        <i class="fas fa-briefcase fa-3x"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <a href="{{ url_for('case_study', slug=case_study.slug) }}" class="text-decoration-none">
+                                        <h5 class="card-title">{{ case_study.title }}</h5>
+                                    </a>
+                                    <p class="card-text">{{ case_study.challenge[:150] }}{% if case_study.challenge|length > 150 %}...{% endif %}</p>
+                                    <small class="text-muted">Client: {{ case_study.client_name }} | Industry: {{ case_study.industry }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Tech Solutions Section -->
+    <section id="smart-tech" class="smart-tech-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">Smart Digital Technology Solutions</h2>
+                    <p class="section-subtitle">Comprehensive technology solutions that drive digital transformation</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="tech-card card h-100 shadow-sm fade-up">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <i class="fab fa-salesforce"></i>
+                            </div>
+                            <h5 class="tech-title">Salesforce CRM</h5>
+                            <p class="tech-description">Complete customer relationship management platform with AI-powered insights and automation.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="tech-card card h-100 shadow-sm fade-up">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h5 class="tech-title">Zoho Services</h5>
+                            <p class="tech-description">Comprehensive business suite including CRM, project management, and collaboration tools.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="tech-card card h-100 shadow-sm fade-up">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <i class="fas fa-digital-tachograph"></i>
+                            </div>
+                            <h5 class="tech-title">Digital Transformation</h5>
+                            <p class="tech-description">End-to-end digital transformation consulting and implementation services.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="tech-card card h-100 shadow-sm fade-up">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h5 class="tech-title">DevOps Consulting</h5>
+                            <p class="tech-description">Streamline your development and operations with modern DevOps practices and tools.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / Insights Section -->
+    <section id="blog" class="blog-section py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <a href="{{ url_for('blog') }}" class="text-decoration-none">
+                        <h2 class="section-title">Blog / Insights</h2>
+                    </a>
+                    <p class="section-subtitle">Latest insights and trends in digital transformation</p>
+                </div>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                {% for blog in featured_blogs[:2] %}
+                <div class="col-lg-5 col-md-6">
+                    <div class="blog-card card h-100 shadow-sm fade-up">
+                        {% if blog.image_url %}
+                            <img src="{{ blog.image_url }}" class="card-img-top" alt="{{ blog.title }}">
+                        {% else %}
+                            <div class="card-img-top d-flex align-items-center justify-content-center bg-primary text-white" style="height: 200px;">
+                                <i class="fas fa-blog fa-3x"></i>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <small class="text-muted">{{ blog.created_at.strftime('%B %d, %Y') }}</small>
+                            <a href="{{ url_for('blog_post', slug=blog.slug) }}" class="text-decoration-none">
+                                <h5 class="card-title mt-2">{{ blog.title }}</h5>
+                            </a>
+                            <p class="card-text">{{ blog.excerpt or (blog.content[:150] + '...' if blog.content|length > 150 else blog.content) }}</p>
+                            <a href="{{ url_for('blog_post', slug=blog.slug) }}" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials Section -->
+    <section id="testimonials" class="testimonials-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">Client Testimonials</h2>
+                    <p class="section-subtitle">What our clients say about our services</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="testimonial-card card shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <div class="rating mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <blockquote class="blockquote mb-3">
+                                "Optimum Value transformed our entire sales process with their Salesforce implementation. We've seen a 45% increase in lead conversion and significantly improved customer satisfaction."
+                            </blockquote>
+                            <footer class="blockquote-footer">
+                                <strong>Dr. Steven Lopez</strong>, CEO, TechMed Solutions
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="testimonial-card card shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <div class="rating mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <blockquote class="blockquote mb-3">
+                                "The team's expertise in manufacturing cloud solutions helped us streamline our operations and improve customer communication. Exceptional service and support throughout the entire project."
+                            </blockquote>
+                            <footer class="blockquote-footer">
+                                <strong>Maria Rodriguez</strong>, VP Operations, Industrial Dynamics
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="careers-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">Join Our Team</h2>
+                    <p class="section-subtitle">Be part of our mission to deliver exceptional Salesforce solutions and drive digital transformation.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="career-card card h-100 shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <div class="career-icon mb-3">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h4 class="career-title">Salesforce Developer</h4>
+                            <p class="career-location mb-3"><i class="fas fa-map-marker-alt me-2"></i>Remote / Hybrid</p>
+                            <p class="career-description">Join our development team to build custom Salesforce solutions and integrations for enterprise clients.</p>
+                            <ul class="career-requirements">
+                                <li>3+ years Salesforce development experience</li>
+                                <li>Apex, Lightning Components, REST APIs</li>
+                                <li>Platform Developer I/II certification preferred</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-outline-primary mt-3">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="career-card card h-100 shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <div class="career-icon mb-3">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <h4 class="career-title">Salesforce Consultant</h4>
+                            <p class="career-location mb-3"><i class="fas fa-map-marker-alt me-2"></i>Remote / Hybrid</p>
+                            <p class="career-description">Lead client implementations and provide strategic guidance on Salesforce best practices and solutions.</p>
+                            <ul class="career-requirements">
+                                <li>5+ years Salesforce consulting experience</li>
+                                <li>Strong business analysis skills</li>
+                                <li>Admin and Platform App Builder certifications</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-outline-primary mt-3">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="career-card card h-100 shadow-sm fade-up">
+                        <div class="card-body p-4">
+                            <div class="career-icon mb-3">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4 class="career-title">Business Analyst</h4>
+                            <p class="career-location mb-3"><i class="fas fa-map-marker-alt me-2"></i>Remote / Hybrid</p>
+                            <p class="career-description">Analyze business requirements and translate them into effective Salesforce solutions for our clients.</p>
+                            <ul class="career-requirements">
+                                <li>3+ years business analysis experience</li>
+                                <li>Strong communication and documentation skills</li>
+                                <li>Salesforce platform knowledge preferred</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-outline-primary mt-3">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <h3 class="mb-4">Why Work With Us?</h3>
+                    <div class="row g-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="benefit-item">
+                                <i class="fas fa-laptop-house fa-2x text-primary mb-3"></i>
+                                <h5>Remote Flexibility</h5>
+                                <p>Work from anywhere with flexible schedules</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="benefit-item">
+                                <i class="fas fa-graduation-cap fa-2x text-primary mb-3"></i>
+                                <h5>Learning & Growth</h5>
+                                <p>Continuous learning opportunities and certifications</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="benefit-item">
+                                <i class="fas fa-heart fa-2x text-primary mb-3"></i>
+                                <h5>Health Benefits</h5>
+                                <p>Comprehensive health and wellness programs</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="benefit-item">
+                                <i class="fas fa-users fa-2x text-primary mb-3"></i>
+                                <h5>Great Team</h5>
+                                <p>Collaborative culture with talented professionals</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Left Column -->
+                <div class="col-lg-4">
+                    <div class="footer-brand mb-4">
+                        <img src="{{ url_for('static', filename='images/logo-placeholder.svg') }}" alt="Optimum Value Logo" height="40" class="mb-3">
+                        <p class="footer-description">
+                            Leading Salesforce consulting partner delivering innovative digital transformation solutions for businesses across industries.
+                        </p>
+                        <div class="salesforce-badge mb-3">
+                            <img src="https://partners.salesforce.com/s/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Png&versionId=0681U000006iSRr&operationContext=CHATTER&contentId=05T1U00000Oo7wP" alt="Salesforce Partner" height="50">
+                        </div>
+                        <div class="social-icons">
+                            <a href="#" class="text-light me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+                            <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                            <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-2x"></i></a>
+                            <a href="#" class="text-light"><i class="fab fa-youtube fa-2x"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Middle Column -->
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="footer-heading">Useful Links</h5>
+                            <ul class="list-unstyled footer-links">
+                                <li><a href="#hero" class="text-light">Home</a></li>
+                                <li><a href="#" class="text-light">About Us</a></li>
+                                <li><a href="#case-studies" class="text-light">Case Studies</a></li>
+                                <li><a href="#contact" class="text-light">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="footer-heading">Industry Links</h5>
+                            <ul class="list-unstyled footer-links">
+                                <li><a href="#industries" class="text-light">Utility</a></li>
+                                <li><a href="#industries" class="text-light">Financial Services</a></li>
+                                <li><a href="#industries" class="text-light">Healthcare</a></li>
+                                <li><a href="#industries" class="text-light">Manufacturing</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="col-lg-4">
+                    <h5 class="footer-heading">Newsletter Sign-up</h5>
+                    <p class="footer-newsletter-text">Stay updated with our latest insights and industry trends.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                            <button class="btn btn-primary" type="submit">Signup</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Optimum Value. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by NextBigBox</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" title="Go to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

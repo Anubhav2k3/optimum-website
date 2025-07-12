@@ -1,0 +1,293 @@
+🎨 Theme:
+Professional business-focused layout
+
+Color palette: Blues, Greys, White
+
+Font style: Clean sans-serif (e.g., Poppins, Open Sans)
+
+🔝 HEADER (Sticky)
+Position: Top (sticky while scrolling)
+Elements:
+
+[LOGO Placeholder] (left aligned)
+Alt text: “Optimum Value Logo”
+
+Navigation Menu (right aligned, horizontal):
+
+Our Story
+
+Salesforce Expertise
+
+Services
+
+Industries
+
+Careers
+
+Contact Us
+Each as dropdown menu (empty for now)
+
+html
+Copy
+Edit
+<header>
+  <img src="logo-placeholder.png" alt="Optimum Value Logo" />
+  <nav>
+    <ul>
+      <li>Our Story</li>
+      <li>Salesforce Expertise</li>
+      <li>Services</li>
+      <li>Industries</li>
+      <li>Careers</li>
+      <li>Contact Us</li>
+    </ul>
+  </nav>
+</header>
+📣 HERO SECTION
+Title: Empowering Digital Transformation
+Subtitle: Innovative IT solutions for businesses that drive growth and efficiency.
+CTA Button: Get Started
+Background: Light or white, minimal with subtle abstract shapes
+Layout: Center-aligned
+
+html
+Copy
+Edit
+<section id="hero">
+  <h1>Empowering Digital Transformation</h1>
+  <p>Innovative IT solutions for businesses that drive growth and efficiency.</p>
+  <button>Get Started</button>
+</section>
+🧩 SERVICES SECTION – ROW 1
+Layout: 3-column grid
+Each Box:
+
+Icon placeholder
+
+Title
+
+Short description
+
+Boxes:
+
+Sales Cloud
+CRM platform to manage leads and opportunities
+
+Manufacturing Cloud
+Solutions for manufacturers to streamline operations
+
+Service Cloud
+Customer support made smarter and faster
+
+html
+Copy
+Edit
+<section id="services">
+  <div class="service-box">
+    <img src="icon-sales.png" alt="Sales Cloud Icon" />
+    <h3>Sales Cloud</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  </div>
+  <div class="service-box">
+    <img src="icon-manufacturing.png" alt="Manufacturing Cloud Icon" />
+    <h3>Manufacturing Cloud</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  </div>
+  <div class="service-box">
+    <img src="icon-service.png" alt="Service Cloud Icon" />
+    <h3>Service Cloud</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  </div>
+</section>
+🧩 SERVICES SECTION – ROW 2
+Same layout as above
+Boxes:
+
+Marketing Cloud
+
+Financial Service Cloud
+
+Integration and Customization
+
+🚀 ROADMAP SECTION
+Title: Boost Your Productivity With A Ready-to-go Roadmap
+Subtitle: Check out step by step implementation of Salesforce.
+Layout: Vertical stack with industry cards
+
+Each Industry Box:
+Industry Name
+
+Numbered List Placeholder
+
+Industries:
+
+Utility
+
+Healthcare
+
+Financial Services
+
+Retail
+
+Manufacturing
+
+General Business
+
+html
+Copy
+Edit
+<section id="roadmap">
+  <h2>Boost Your Productivity With A Ready-to-go Roadmap</h2>
+  <p>Check out step by step implementation of Salesforce.</p>
+
+  <div class="industry">
+    <h4>Utility Industry</h4>
+    <ol>
+      <li>Lorem ipsum step one.</li>
+      <li>Lorem ipsum step two.</li>
+      <li>Lorem ipsum step three.</li>
+    </ol>
+  </div>
+
+  <!-- Repeat for each industry -->
+</section>
+🌍 OUR INDUSTRIES
+Title: Our Industries
+Subtitle: Our industries span finance, manufacturing, healthcare, retail, and more, delivering tailored digital solutions.
+Layout: Grid tiles with image placeholders and industry title
+
+Industries to include:
+
+Utility
+
+Manufacturing
+
+Financial Service
+
+Retail
+
+Consumer Goods
+
+Healthcare
+
+📊 CASE STUDIES
+Title: Case Studies
+Subtitle: Discover How Our Solutions Have Made a Difference in Real-world Scenarios.
+Layout: 2-column layout
+
+Left: Case study logo/image
+
+Right: Description (use Lorem Ipsum)
+
+💡 SMART TECH SOLUTIONS
+Title: Smart Digital Technology Solutions
+Layout: Horizontal card grid
+
+Cards:
+
+Salesforce CRM
+
+Zoho Services
+
+Digital Transformation
+
+DevOps Consulting
+
+Each card:
+
+Icon/image placeholder
+
+Title
+
+Brief description
+
+📝 BLOG / INSIGHTS
+Title: Blog / Insights
+Layout: Blog cards (image, date, title, snippet)
+
+Sample placeholders:
+
+Image: blog1.jpg
+
+Date: July 1, 2025
+
+Title: Lorem Ipsum Trend in DevOps
+
+Snippet: Lorem ipsum dolor sit amet...
+
+💬 CLIENT TESTIMONIALS
+Title: Client Testimonials
+Layout:
+
+Quote Box
+
+5-star rating icons
+
+Testimonial text
+
+Client name and position (e.g., Dr. Steven Lopez, CEO)
+
+📥 FOOTER
+Layout: 3-column
+
+Left Column:
+
+Logo placeholder
+
+Company description
+
+Salesforce Partner Badge
+
+Social media icons (LinkedIn, Facebook, Twitter, YouTube)
+
+Middle Column:
+
+Useful Links:
+
+Home
+
+About Us
+
+Case Studies
+
+Contact Us
+
+Industry Links:
+
+Utility
+
+Financial Services
+
+Healthcare
+
+Right Column:
+
+Newsletter Sign-up:
+
+Input field for email
+
+"Signup" button
+
+Bottom Bar:
+
+Copyright © 2025
+
+“Powered by NextBigBox”
+
+⬆️ SCROLL-UP BUTTON
+Position: Fixed bottom-right
+Function: Scroll to top
+Style: Circular button with upward arrow icon
+Animation: Appears after scrolling
+
+🔁 DYNAMIC/ANIMATED ELEMENTS
+Scroll-triggered fade-in for all service boxes, industries, and testimonial cards
+
+Navigation bar sticky effect
+
+Scroll-up button only appears after scrolling past hero
+
+Smooth scroll transitions for in-page links
+
+Hover effect on blog cards and CTA buttons
+

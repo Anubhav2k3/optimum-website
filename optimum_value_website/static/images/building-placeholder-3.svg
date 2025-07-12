@@ -1,0 +1,30 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sky background -->
+  <rect width="300" height="200" fill="#e8f4fd"/>
+  
+  <!-- Industrial building -->
+  <rect x="40" y="100" width="220" height="90" fill="#9B4A8B"/>
+  
+  <!-- Roof -->
+  <polygon points="30,100 150,60 270,100" fill="#5A1E4A"/>
+  
+  <!-- Main entrance -->
+  <rect x="130" y="140" width="40" height="50" fill="#3e3e3c"/>
+  
+  <!-- Windows -->
+  <rect x="60" y="120" width="20" height="25" fill="#ffffff" opacity="0.8"/>
+  <rect x="90" y="120" width="20" height="25" fill="#ffffff" opacity="0.8"/>
+  <rect x="190" y="120" width="20" height="25" fill="#ffffff" opacity="0.8"/>
+  <rect x="220" y="120" width="20" height="25" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Chimney -->
+  <rect x="200" y="70" width="15" height="30" fill="#7B2D6B"/>
+  
+  <!-- Ground -->
+  <rect x="0" y="185" width="300" height="15" fill="#3e3e3c"/>
+  
+  <!-- Title -->
+  <text x="150" y="25" font-family="Poppins, sans-serif" font-size="16" font-weight="600" fill="#5A1E4A" text-anchor="middle">
+    Manufacturing Facility
+  </text>
+</svg>
