@@ -1,0 +1,146 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if blog %}Edit Blog Post{% else %}New Blog Post{% endif %}{% endblock %}
+{% block page_title %}{% if blog %}Edit Blog Post{% else %}Create New Blog Post{% endif %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card admin-card">
+            <div class="card-header">
+                <h5 class="mb-0">{% if blog %}Edit Blog Post{% else %}Create New Blog Post{% endif %}</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="title" class="form-label">Title *</label>
+                            <input type="text" class="form-control" id="title" name="title" 
+                                   value="{{ blog.title if blog else '' }}" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="slug" class="form-label">URL Slug *</label>
+                            <input type="text" class="form-control" id="slug" name="slug" 
+                                   value="{{ blog.slug if blog else '' }}" required>
+                            <div class="form-text">URL-friendly version of the title (e.g., my-blog-post)</div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="excerpt" class="form-label">Excerpt</label>
+                            <textarea class="form-control" id="excerpt" name="excerpt" rows="3">{{ blog.excerpt if blog else '' }}</textarea>
+                            <div class="form-text">Brief summary that appears in blog listings</div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="content" class="form-label">Content *</label>
+                            <textarea class="form-control" id="content" name="content" rows="15" required>{{ blog.content if blog else '' }}</textarea>
+                            <div class="form-text">Full blog post content (HTML allowed)</div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="image_url" class="form-label">Featured Image URL</label>
+                            <input type="url" class="form-control" id="image_url" name="image_url" 
+                                   value="{{ blog.image_url if blog else '' }}">
+                            <div class="form-text">URL to the featured image for this blog post</div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="published" name="published" 
+                                       {% if blog and blog.published %}checked{% endif %}>
+                                <label class="form-check-label" for="published">
+                                    Published
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="featured" name="featured" 
+                                       {% if blog and blog.featured %}checked{% endif %}>
+                                <label class="form-check-label" for="featured">
+                                    Featured
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-admin-primary">
+                                    <i class="fas fa-save me-2"></i>
+                                    {% if blog %}Update Blog Post{% else %}Create Blog Post{% endif %}
+                                </button>
+                                <a href="{{ url_for('admin_blogs') }}" class="btn btn-secondary">
+                                    <i class="fas fa-times me-2"></i>
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card admin-card">
+            <div class="card-header">
+                <h6 class="mb-0">Publishing Tips</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled small">
+                    <li class="mb-2">
+                        <i class="fas fa-lightbulb text-warning me-2"></i>
+                        Use a compelling title that includes relevant keywords
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-link text-info me-2"></i>
+                        URL slug should be lowercase with hyphens (no spaces)
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-image text-success me-2"></i>
+                        Featured images should be at least 800x400 pixels
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-star text-primary me-2"></i>
+                        Featured posts appear on the homepage
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-eye text-secondary me-2"></i>
+                        Save as draft first, then publish when ready
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        {% if blog %}
+        <div class="card admin-card mt-3">
+            <div class="card-header">
+                <h6 class="mb-0">Post Information</h6>
+            </div>
+            <div class="card-body">
+                <p class="small mb-1"><strong>Created:</strong> {{ blog.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                <p class="small mb-1"><strong>Updated:</strong> {{ blog.updated_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                <p class="small mb-0"><strong>Author:</strong> {{ blog.author.username }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Auto-generate slug from title
+document.getElementById('title').addEventListener('input', function() {
+    const title = this.value;
+    const slug = title.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim('-');
+    document.getElementById('slug').value = slug;
+});
+</script>
+{% endblock %}

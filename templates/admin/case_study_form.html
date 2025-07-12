@@ -1,0 +1,174 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if case_study %}Edit Case Study{% else %}New Case Study{% endif %}{% endblock %}
+{% block page_title %}{% if case_study %}Edit Case Study{% else %}Create New Case Study{% endif %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card admin-card">
+            <div class="card-header">
+                <h5 class="mb-0">{% if case_study %}Edit Case Study{% else %}Create New Case Study{% endif %}</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="title" class="form-label">Title *</label>
+                            <input type="text" class="form-control" id="title" name="title" 
+                                   value="{{ case_study.title if case_study else '' }}" required>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="slug" class="form-label">URL Slug *</label>
+                            <input type="text" class="form-control" id="slug" name="slug" 
+                                   value="{{ case_study.slug if case_study else '' }}" required>
+                            <div class="form-text">URL-friendly version of the title</div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="client_name" class="form-label">Client Name *</label>
+                            <input type="text" class="form-control" id="client_name" name="client_name" 
+                                   value="{{ case_study.client_name if case_study else '' }}" required>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="industry" class="form-label">Industry *</label>
+                            <select class="form-select" id="industry" name="industry" required>
+                                <option value="">Select Industry</option>
+                                <option value="Financial Services" {% if case_study and case_study.industry == 'Financial Services' %}selected{% endif %}>Financial Services</option>
+                                <option value="Healthcare" {% if case_study and case_study.industry == 'Healthcare' %}selected{% endif %}>Healthcare</option>
+                                <option value="Manufacturing" {% if case_study and case_study.industry == 'Manufacturing' %}selected{% endif %}>Manufacturing</option>
+                                <option value="Utilities" {% if case_study and case_study.industry == 'Utilities' %}selected{% endif %}>Utilities</option>
+                                <option value="Retail" {% if case_study and case_study.industry == 'Retail' %}selected{% endif %}>Retail</option>
+                                <option value="Technology" {% if case_study and case_study.industry == 'Technology' %}selected{% endif %}>Technology</option>
+                                <option value="Education" {% if case_study and case_study.industry == 'Education' %}selected{% endif %}>Education</option>
+                                <option value="Non-Profit" {% if case_study and case_study.industry == 'Non-Profit' %}selected{% endif %}>Non-Profit</option>
+                                <option value="Other" {% if case_study and case_study.industry == 'Other' %}selected{% endif %}>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="challenge" class="form-label">Challenge *</label>
+                            <textarea class="form-control" id="challenge" name="challenge" rows="4" required>{{ case_study.challenge if case_study else '' }}</textarea>
+                            <div class="form-text">Describe the client's main challenges and pain points</div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="solution" class="form-label">Solution *</label>
+                            <textarea class="form-control" id="solution" name="solution" rows="4" required>{{ case_study.solution if case_study else '' }}</textarea>
+                            <div class="form-text">Explain how you solved the client's challenges</div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="results" class="form-label">Results *</label>
+                            <textarea class="form-control" id="results" name="results" rows="4" required>{{ case_study.results if case_study else '' }}</textarea>
+                            <div class="form-text">Highlight the measurable outcomes and benefits achieved</div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="image_url" class="form-label">Featured Image URL</label>
+                            <input type="url" class="form-control" id="image_url" name="image_url" 
+                                   value="{{ case_study.image_url if case_study else '' }}">
+                            <div class="form-text">URL to the featured image for this case study</div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="published" name="published" 
+                                       {% if case_study and case_study.published %}checked{% endif %}>
+                                <label class="form-check-label" for="published">
+                                    Published
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="featured" name="featured" 
+                                       {% if case_study and case_study.featured %}checked{% endif %}>
+                                <label class="form-check-label" for="featured">
+                                    Featured
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-admin-primary">
+                                    <i class="fas fa-save me-2"></i>
+                                    {% if case_study %}Update Case Study{% else %}Create Case Study{% endif %}
+                                </button>
+                                <a href="{{ url_for('admin_case_studies') }}" class="btn btn-secondary">
+                                    <i class="fas fa-times me-2"></i>
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card admin-card">
+            <div class="card-header">
+                <h6 class="mb-0">Case Study Tips</h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled small">
+                    <li class="mb-2">
+                        <i class="fas fa-exclamation-triangle text-danger me-2"></i>
+                        <strong>Challenge:</strong> Focus on specific business problems
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-lightbulb text-warning me-2"></i>
+                        <strong>Solution:</strong> Explain your approach and methodology
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-chart-line text-success me-2"></i>
+                        <strong>Results:</strong> Include quantifiable metrics when possible
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-star text-primary me-2"></i>
+                        Featured case studies appear on the homepage
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-building text-info me-2"></i>
+                        Use client's actual name if you have permission
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        {% if case_study %}
+        <div class="card admin-card mt-3">
+            <div class="card-header">
+                <h6 class="mb-0">Case Study Information</h6>
+            </div>
+            <div class="card-body">
+                <p class="small mb-1"><strong>Created:</strong> {{ case_study.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                <p class="small mb-1"><strong>Updated:</strong> {{ case_study.updated_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                <p class="small mb-0"><strong>Author:</strong> {{ case_study.author.username }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Auto-generate slug from title
+document.getElementById('title').addEventListener('input', function() {
+    const title = this.value;
+    const slug = title.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim('-');
+    document.getElementById('slug').value = slug;
+});
+</script>
+{% endblock %}
